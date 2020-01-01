@@ -8,10 +8,16 @@
 
 <div class="container body-content">
 
-    <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+    <div th:replace="fragments :: h1-caps"></div>
 
     <form th:action="@{/search/results}" method = "post">
         <h2>Search by:</h2>
+
+<!--        <ul>-->
+<!--            <li th:each="role : ${resource.roles}"><input type="checkbox"-->
+<!--                                                          name="roles" th:value="${role.id}" th:checked="${#sets.contains(roles,role.id)}" /> <label-->
+<!--                    th:text="${role.name}">ROLE_USER</label></li>-->
+<!--        </ul>-->
 
         <p>
             <span th:each="column : ${columns}">
@@ -20,7 +26,10 @@
                         name="searchType"
                         th:id="${column.key}"
                         th:value="${column.key}"
+
                         th:checked="${column.key == 'all'}"/>
+
+
                 <label th:for="${column.key}" th:text="${column.value}"></label>
             </span>
 
@@ -37,18 +46,7 @@
     <hr />
 
     <!-- TODO #4 - Loop over the search results to display all job fields. -->
-    <table class="job-listing">
-        <tr th:each= "job : ${jobs}">
-            <td>
-                <p th:text= "|ID: ${job.id}|"><</p>
-                <p th:text= "|Name: ${job.name}|"></p>
-                <p th:text= "|Employer: ${job.employer}|"></p>
-                <p th:text= "|Location: ${job.location}|"></p>
-                <p th:text= "|Position Type: ${job.positionType}|"></p>
-                <p th:text= "|Skill: ${job.coreCompetency}|"></p>
-            </td>
-        </tr>
-    </table>
+    <div th:replace="fragments :: table-body"></div>
 
 </div>
 
