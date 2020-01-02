@@ -29,8 +29,14 @@ table.job-listing {
     width: 80%;
 }
 
-table.job-listing td:first-child {
-    font-weight: bold;
+table.job-listing tr:nth-child(even) {
+    font-weight: lighter;
+    font-family: "Times New Roman", Times, serif;
+}
+
+table.job-listing tr:nth-child(odd) {
+    font-weight: normal;
+    font-family: "Comic Sans MS", cursive, sans-serif
 }
 
 table.job-listing td:last-child {
@@ -43,4 +49,9 @@ label {
 
 .centered {
     text-align: center;
+}
+
+p.unique-id {
+    font-weight: bold;
+    font-family: Impact, Charcoal, sans-serif;
 }

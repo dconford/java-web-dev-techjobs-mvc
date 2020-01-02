@@ -13,11 +13,6 @@
     <form th:action="@{/search/results}" method = "post">
         <h2>Search by:</h2>
 
-<!--        <ul>-->
-<!--            <li th:each="role : ${resource.roles}"><input type="checkbox"-->
-<!--                                                          name="roles" th:value="${role.id}" th:checked="${#sets.contains(roles,role.id)}" /> <label-->
-<!--                    th:text="${role.name}">ROLE_USER</label></li>-->
-<!--        </ul>-->
 
         <p>
             <span th:each="column : ${columns}">
@@ -26,10 +21,7 @@
                         name="searchType"
                         th:id="${column.key}"
                         th:value="${column.key}"
-
-                        th:checked="${column.key == 'all'}"/>
-
-
+                        th:checked="${column.key.equals(radiochek)}"/>
                 <label th:for="${column.key}" th:text="${column.value}"></label>
             </span>
 

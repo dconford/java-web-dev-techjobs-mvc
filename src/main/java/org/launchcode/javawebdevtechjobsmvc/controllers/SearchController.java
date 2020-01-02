@@ -17,10 +17,12 @@ import static org.launchcode.javawebdevtechjobsmvc.controllers.ListController.co
 @RequestMapping("search")
 
 public class SearchController {
+    //String radiochek = "all";
 
     @RequestMapping(value = "")
     public String search(Model model) {
         model.addAttribute("columns", columnChoices);
+        model.addAttribute("radiochek", "all");
         return "search";
     }
 
@@ -29,6 +31,7 @@ public class SearchController {
 @PostMapping("/results")
     public String displaySearchResults(Model model, @RequestParam String searchType, @RequestParam String searchTerm) {
         ArrayList<Job> jobs;
+        String radiochek = searchType;
         if (searchType.toLowerCase().equals("all") && searchTerm.toLowerCase().equals("all") || searchTerm.toLowerCase().equals("")){
             jobs = JobData.findAll();
             model.addAttribute("title", "Jobs with (if) " + searchType + ": " + searchTerm);
@@ -36,8 +39,10 @@ public class SearchController {
             jobs = JobData.findByColumnAndValue(searchType, searchTerm);
             model.addAttribute("title", "Jobs with " + searchType + ": " + searchTerm);
         }
+        model.addAttribute("radiochek", radiochek);
         model.addAttribute("columns", columnChoices);
         model.addAttribute("jobs", jobs);
+
 
         return "search";
     }
